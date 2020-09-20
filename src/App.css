@@ -1,38 +1,173 @@
-.App {
-  text-align: center;
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  height: 100vh;
+  overflow: hidden;
+  background-color: black;
+  font-family: "Montserrat", sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.word-options {
+  width: 100vw;
+  height: 50vh;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+h1 {
+  z-index: 10;
+  font-size: 4em;
+  height: 10%;
   color: white;
+  text-shadow: -5px -5px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000,
+    2px 2px 0 #000;
+
+  cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
+@keyframes slideIn {
   from {
-    transform: rotate(0deg);
+    transform: translateY(-100%);
   }
   to {
-    transform: rotate(360deg);
+    transform: none;
+  }
+}
+
+.message {
+  z-index: 200;
+  transform: translateX(100%);
+  color: white;
+  text-shadow: -5px -5px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000,
+    2px 2px 0 #000;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3em;
+  animation-name: slide;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(100%);
+  }
+  20% {
+    transform: none;
+  }
+  80% {
+    transform: none;
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.loader {
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-bottom: 2px solid white;
+  border-radius: 50%;
+  padding: 20px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation-name: spin;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes spin {
+  from {
+    transform: none;
+  }
+  to {
+    transform: rotateZ(360deg);
+  }
+}
+
+.user {
+  position: absolute;
+  /* mix-blend-mode: difference; */
+  right: 10px;
+  bottom: 10px;
+  color: white;
+  text-shadow: 2px 2px 2px black;
+}
+
+.user a {
+  color: inherit;
+  text-shadow: inherit;
+}
+
+img {
+  z-index: -1;
+  position: absolute;
+  top: -20%;
+  left: 0;
+  width: 100vw;
+}
+
+.blocks {
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.block {
+  background-color: rgb(0, 0, 0);
+  border: 1px solid black;
+  animation: open 1s forwards;
+}
+
+@keyframes open {
+  to {
+    background: transparent;
+  }
+}
+
+.visible {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
+@media screen and (max-width: 500px) {
+  .word-options {
+    height: 90vh;
+    justify-content: flex-end;
+  }
+  h1 {
+    margin: 20px;
+    font-size: 3em;
+    height: 10%;
+    color: black;
+    text-shadow: -5px -5px 0 rgb(255, 255, 255), 2px -2px 0 rgb(255, 255, 255),
+      -2px 2px 0 rgb(255, 255, 255), 2px 2px 0 rgb(255, 255, 255);
+  }
+}
+
+@media screen and (max-width: 700px) {
+  img {
+    top: 0;
   }
 }
